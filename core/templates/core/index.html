@@ -1,0 +1,38 @@
+{% extends 'core/core.html' %}
+
+{% block title %}home{%endblock%}
+
+{% block content %}
+   <div class="pt-28 px-10">
+     <h1>My Product</h1>
+     <h1>{{request.user}}</h1>
+
+      <div class="mt-8 grid grid-cols-4 gap-3">
+        {% for item in items %}
+           <a href="{% url 'detaill' item.id %}">
+              <div class="py-3 px-6 rounded-lg shadow-sm bg-slate-200">
+                <img src="{{item.image.url}}" class="w-full h-[200px]" alt="">
+                <h1 class="text-2xl mt-4 mb-2">{{item.nama}}</h1>
+                <p class="text-slate-600">{{item.price}}</p>
+              </div>
+           </a>
+        {% endfor %}
+      </div>
+
+
+      <div class="mt-24 px-10 pb-14 pt-7">
+         <div class="bg-slate-200 py-14">
+            <h1 class="text-center mb-8">Category</h1>
+
+            <div class="grid gap-4 grid-cols-3 px-10">
+                {% for category in categories %}
+                  <div class="px-4 py-3 text-center bg-slate-100">
+                    <h1 class="text-2xl">{{category.nama}}</h1>
+                    <p>{{category.items.count}}</p>
+                  </div>
+                {% endfor %}
+            </div>
+         </div>
+      </div>
+   </div>
+{% endblock %}

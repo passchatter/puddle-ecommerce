@@ -1,0 +1,33 @@
+{% extends 'core/core.html' %}
+
+{% block title %}detail{%endblock%}
+
+
+{% block content %}
+
+<div class="pt-28 px-10 mb-10">
+    <h1 class="text-3xl font-semibold text-black mb-10">Add New Item</h1>
+
+
+    <form action="." method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="space-y-4">
+            {{form.as_p}}
+        </div>
+
+
+        {% if form.errors or form.non_fields_errors %}
+            <div class="mb-3 p-6 bg-red-400 text-white rounded-xl">
+                {% for field in form %}
+                {{field.errors}}
+                {% endfor %}
+                {{form.non_field_errors}}
+            </div>
+        {% endif %}
+
+       <button class="text-white mt-6 px-5 py-3 bg-orange-500 rounded-md">Submit</button>
+    </form>
+</div>
+
+{% endblock %}

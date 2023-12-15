@@ -1,0 +1,37 @@
+{% extends 'core/core.html' %}
+
+{% block title %}detail{%endblock%}
+
+
+{% block content %}
+<div class="pt-28 px-10 mb-14">
+    <h1 class="tet-2xl text-black">Detail</h1>
+   <div class="grid grid-cols-2 gap-6">
+    <div class="">
+        <img src="{{item.image.url}}" alt="" class="w-[full] h-[400px]">
+    </div>
+    <div class="">
+        <h1>{{item.nama}}</h1>
+        <p>{{item.description}}</p>
+        <p>{{item.price}}</p>
+        <p>{{item.created_at}}</p>
+        <a href="" class="text-white bg-orange-500 px-3 py-2 rounded-md mt-5 block max-w-max">Contact Seller</a>
+    </div>
+   </div>
+
+   <div class="">
+    <h1 class="my-8 text-2xl text-black">related items</h1>
+    <div class="grid grid-cols-3 gap-5">
+      {% for related in related_items %}
+        <a href="{% url 'detaill' related.id %}">
+            <div class="py-3 px-6 rounded-lg shadow-sm bg-slate-200">
+              <img src="{{related.image.url}}" class="w-[200px] h-[200px]" alt="">
+              <h1 class="text-2xl mt-4 mb-2">{{related.nama}}</h1>
+              <p class="text-slate-600">{{related.price}}</p>
+            </div>
+         </a>
+      {% endfor %}
+    </div>
+   </div>
+</div>
+{% endblock %}
